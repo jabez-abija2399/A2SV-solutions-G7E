@@ -1,0 +1,43 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        """
+        AABABBA
+        A A B A B B, A
+        max = 0, 1, 2, 3, 4
+        count = {A:4, B:3}
+
+        longest char with k diffrent
+
+        We want substrings where most letters are the same and only k letter is different.
+         many consucitive same letters  +  few different letters ≤ k 
+
+        diffrnet
+
+        maxLetter 
+        letter_change = windowSize - count
+        letChang <= k:
+            exapand
+            which means valid and add
+        letChange > k: this means len diffrent char greater 
+            shrink
+            remove left element
+
+
+        """
+        count = {}
+        maxFr = 0
+        left = 0
+        maxLength = 0
+
+
+        for right in range(len(s)):
+            char = s[right]
+            count[char] = count.get(char, 0) + 1
+            maxFr = max(maxFr, count[char])
+
+            while (right - left + 1) - maxFr > k:
+                count[s[left]] -= 1
+                left += 1
+            maxLength = max(maxLength, right - left + 1)
+        return maxLength
+            
