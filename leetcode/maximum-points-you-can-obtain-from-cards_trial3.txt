@@ -1,0 +1,27 @@
+class Solution:
+    def maxScore(self, cardPoints: List[int], k: int) -> int:
+        """
+        add nums[right]
+        update windowSum
+        if window size > k
+            remove nums[left]
+            left++
+        if window size == k
+            check condition                 
+        """
+        left = 0
+        n = len(cardPoints)
+        windSum = sum(cardPoints[:n-k])
+        totalSum = sum(cardPoints)
+        minSum = windSum
+
+        for right in range(n-k, n):
+            windSum += cardPoints[right]
+
+            if right - left + 1 > k-n:
+                windSum -= cardPoints[left]
+                left +=1
+            minSum = min(minSum, windSum)
+        return totalSum - minSum
+            
+        
