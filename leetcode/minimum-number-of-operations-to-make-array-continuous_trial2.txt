@@ -1,0 +1,17 @@
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+
+        n = len(nums)  
+        
+        nums = sorted(set(nums))
+        
+        maxWind = 0
+        left = 0
+        
+        for right in range(len(nums)):
+            while left < len(nums) and nums[right] - nums[left] > n - 1:
+                left += 1
+            
+            maxWind = max(maxWind, right - left + 1)
+        
+        return n - maxWind
