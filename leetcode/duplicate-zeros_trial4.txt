@@ -1,0 +1,21 @@
+class Solution:
+    def duplicateZeros(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        n = len(arr)
+        zerCount = arr.count(0)
+        left = n - 1
+        right = n + zerCount - 1
+        
+        while left >= 0:
+            if right < n :
+                arr[right] = arr[left]     
+            right -= 1
+
+            if arr[left] == 0:
+                if right < n:
+                    arr[right] = 0
+                right -= 1
+            left -= 1
+        return arr
