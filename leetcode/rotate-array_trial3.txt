@@ -1,0 +1,13 @@
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        k = k % n
+        lastHead = n - k
+        newTail = nums[:lastHead]
+        newHead = nums[lastHead:]
+        nums[:] = newHead + newTail
+        return nums
+      
