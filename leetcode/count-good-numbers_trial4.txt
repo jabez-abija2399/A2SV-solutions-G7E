@@ -1,0 +1,17 @@
+class Solution:
+    def countGoodNumbers(self, n: int) -> int:
+        MOD = 10**9 + 7
+        def power(x, p):
+            if p == 0:
+                return 1
+            
+            half = power(x, p // 2)
+
+            if p % 2 == 0:
+                return (half * half) % MOD
+            else:
+                return (half * half * x) % MOD
+
+        even = (n+1) // 2
+        odd = n // 2
+        return (power(5, even) * power(4 ,odd)) % MOD 
