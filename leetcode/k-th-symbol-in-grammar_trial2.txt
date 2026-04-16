@@ -1,0 +1,11 @@
+class Solution:
+    def kthGrammar(self, n: int, k: int) -> int:
+        if k == 1 and n == 1:
+            return 0
+        
+        parent = (k+1) // 2
+        parentValeu = self.kthGrammar(n-1, parent)
+        if k % 2 == 0:
+            return 1 - parentValeu
+        else:
+            return parentValeu
