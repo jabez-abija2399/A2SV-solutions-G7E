@@ -1,0 +1,24 @@
+class Solution:
+    def decodeString(self, s: str) -> str:
+        
+        def helper(i):
+            strings = ""
+            num = 0
+            while i < len(s):
+                if s[i].isdigit():
+                    num = num * 10 + int(s[i])
+                    i += 1
+                elif s[i] == "[":
+                    decoded, j = helper(i + 1)
+                    strings += num * decoded
+                    num = 0
+                    i = j
+                elif s[i] == "]":
+                    return strings, i + 1
+                else:
+                    strings += s[i]
+                    i += 1
+            return strings, i
+                
+        decoded, _ = helper(0)
+        return decoded
