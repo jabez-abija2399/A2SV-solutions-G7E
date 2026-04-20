@@ -1,0 +1,30 @@
+class Solution:
+    def diffWaysToCompute(self, expression: str) -> List[int]:
+        """
+        2 * 
+
+        """
+        def solve(exp):
+            res = []
+            for i in range(len(exp)):
+                if exp[i] in "-+*":
+                    left = exp[:i]
+                    right = exp[i+1:]
+                    leftValue = solve(left)
+                    rightValue = solve(right)
+                    for l in leftValue:
+                        for r in rightValue:
+                            if exp[i] == "-":
+                                res.append(l - r)
+                            elif exp[i] == "+":
+                                res.append(l + r)
+                            else:
+                                res.append(l * r)
+
+
+
+            if not res:
+                res.append(int(exp))
+            return res
+        return solve(expression)
+        
