@@ -1,0 +1,14 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        def solve(x,n):
+            if n == 0:
+                return 1
+            half = solve(x, n//2)
+
+            if n % 2 == 0:
+                return half * half
+            else:
+                return x * half * half
+        if n < 0:
+            return 1 / solve(x, -n)
+        return solve(x,n)
